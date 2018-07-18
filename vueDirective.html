@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>directives</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!--条件判断-->
+    <div id="app">
+        <p v-if="status === 1">status is 1</p>
+        <p v-else-if="status ===2">status is 2</p>
+        <p v-else>status is not above</p>
+    </div>
+
+    <div id="app1">
+        <template v-if="type === 'name'">
+            <label>username:</label>
+            <input placeholder="insert username" :key="name-input">
+        </template>
+        <template v-else>
+            <label>mail</label>
+            <input placeholder="insert mail addr" :key="mail-input">
+        </template>
+        <button @click="handleToggleClick">change insert type</button>
+    </div>
+    <!--vshow 在布尔值为false的时候只是将display设为none，而v-if则是不编译该dom-->
+    <div id="app2">
+        <p v-show="status === 1">display this part when status is 1</p>
+    </div>
+    <!--v-for 遍历
+        (index,key,value)-->
+    <div id="app3">
+        <ul>
+        <template v-for="(book, index) in books" :key="index">
+            <li>bookname: {{ book.name }}</li>
+            <li>author: {{ book.author }}</li>
+        </template>
+        </ul>
+        <span v-for="(value, index) in user" :key="index">{{ value }}&nbsp;</span>
+    </div>
+    <div id="method_and_affair">
+        click times: {{ counter }}
+        <button @click="counter++">+1</button>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data:{
+                status: 3
+            }
+        })
+
+        var app2 = new Vue({
+            el: '#app1',
+            data: {
+                type: 'name'
+            },
+            methods: {
+                handleToggleClick: function(){
+                    this.type = this.type === 'name' ? 'mail' : 'name'
+                }
+            }
+        })
+
+        var app3 = new Vue({
+            el: '#app2',
+            data: {
+                status: 1
+            }
+        })
+
+        var app4 = new Vue({
+            el: '#app3',
+            data: {
+                books: [
+                    { name: 'niko',author: 'olof' },
+                    { name: 'acex', author: 'jw' },
+                    { name: 'gordon', author: 'mouz'}
+                ],
+                user: {
+                    name: 'Adren',
+                    gender: 'male',
+                    age: '24'
+                }
+            }
+        })
+        
+        var app5 = new Vue({
+            el: '#method_and_affair',
+            data: {
+                counter: 0
+            }
+        })
+    </script>
+</body>
+</html>

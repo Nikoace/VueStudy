@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="certcss.css" />
+</head>
+<body>
+    <!--todo: finish practice-->
+    <div id="app" v-cloak>
+        <template v-if="list.length">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>name</th>
+                        <th>price</th>
+                        <th>count</th>
+                        <th>oprate</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(item, index) in list" :key="index">
+                        <td>{{ index +1 }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.price }}</td>
+                        <td>
+                            <button @click="handleReduce(index)" :disable='item.count === 1'>-</button>
+                            {{ item.count }}
+                            <button @click="handleAdd(index)">+</button>
+                        </td>
+                        <td>
+                            <button @click="handleRemove(index)">delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>total: $ {{ totalPrice }}</div>
+        </template>
+        <div v-else>cert is empty</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="certjs.js"></script>
+</body>
+</html>
