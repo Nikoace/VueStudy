@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>bind</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="static" :class="{ 'active': isActive, 'error': isError }"></div>
+    </div>
+    <div id="app2">
+        <div :class="classes"></div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data:{
+                isActive: true,
+                isError: true
+            }
+        })
+        var app2 = new Vue({
+            el: '#app2',
+            data: {
+                isActive: true,
+                error: false
+            },
+            computed: {
+                classes: function(){
+                    return {
+                        active: this.isActive && !this.error,
+                        'text-fail': this.error && this.error.type === 'fail'
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
