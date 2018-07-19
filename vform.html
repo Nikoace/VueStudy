@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!--v-model-->
+    <div id="app">
+        <textarea v-model="text"></textarea>
+        <p>you inserted: </p>
+        <p style="white-space: pre">{{ text }}</p>
+    </div>
+    <!--radio button-->
+    <div id="app2">
+        <input type="radio" v-model="picked" :value="value">
+        <label>radio button</label>
+        <p>{{ picked }}</p>
+        <p>{{ value }}</p>
+    </div>
+    <!--checkbox-->
+    <div id="app3">
+        <input type="checkbox" v-model="toggle" :true-value="value1" :false-value="value2">
+        <p>{{ toggle }}</p>
+        <p>{{ value1 }}</p>
+        <p>{{ value2 }}</p>
+    </div>
+
+    <!--select-->
+    <div id="app4">
+        <select v-model="selected">
+            <option :value="{ number: 123 }">123</option>
+        </select>
+        {{ selected.number }}
+    </div>
+
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                text: ''
+            }
+        })
+
+        var app1 = new Vue({
+            el: '#app2',
+            data:{
+                picked: false,
+                value: "hello world"
+            }
+        })
+
+        var app2 = new Vue({
+            el: '#app3',
+            data: {
+                toggle: false,
+                value1: 123,
+                value2: 456
+            }
+        })
+
+        var app3 = new Vue({
+            el: '#app4',
+            data: {
+                selected: ''
+            }
+        })
+    </script>
+</body>
+</html>

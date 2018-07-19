@@ -2,38 +2,40 @@
 var app = new Vue({
     el: '#app',
     data: {
-        list: {
-            games: [ 
+        list: [
+            [
                 {
                     id: 1,
-                    name: "God of war",
-                    price: 55,
-                    count: 1
+                    name: 'God of War',
+                    price: 50,
+                    count:1
                 },
                 {
                     id: 2,
-                    name: "Persona",
-                    price: 60,
-                    count: 1
+                    name: 'Persona 5',
+                    price: 30,
+                    count:1  
                 }
             ],
-            console: [
+            [
                 {
                     id: 3,
-                    name: "Playstation4",
-                    price: 199,
-                    count: 1 
+                    name: 'Switch',
+                    price: 200,
+                    count:1  
                 }
             ]
-        }
-            
+        ]
     },
     computed: {
         totalPrice: function(){
             var total = 0;
-            for(var i = 0; i < this.list.length; i++){
-                var item = this.list[i];
-                total += item.price * item.count;
+            for(var i = 0; i < this.list[0].length; i++){
+                for(var j = 0; j < this.list[1].length; j++){
+                     var total = this.list[1][j].price;
+                }
+                var itemA = this.list[0][i].price;
+               total += itemA;
             }
             return total.toString().replace(/\B(?=(\d{ 3 })+$)/g,',');
         }
