@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <!--props-->
+    <!-- <div id="app1">
+        <my-component message="data from father component"></my-component>
+    </div>-->
+    <div id="app2">
+        <my-component warning-text="warning-text"></my-component>
+    </div>
+    <script>
+        Vue.component('my-component', {
+            // props: ['message'],
+            props: ['warningText'],
+            template: '<div>{{ warningText }}</div>'
+        });
+        var app = new Vue({
+            // el: '#app1',
+            el: '#app2'
+        })
+    </script>
+</body>
+</html>
